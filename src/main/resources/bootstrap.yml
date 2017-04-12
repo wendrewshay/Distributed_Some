@@ -1,0 +1,16 @@
+spring: 
+  application: 
+    name: some #注册的服务名 
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        service-id: CONFIG #指定Eureka Server的服务名，将会通过Eureka Server发现Config Server
+
+eureka: 
+  instance:
+    non-secure-port: ${server.port:8083} #非SSL端口，若环境变量中server.port有值，则使用环境变量的值，没有则使用8080
+  client: 
+    service-url:
+      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/ #Eureka客户端设置Eureka Server的地址
